@@ -29,7 +29,7 @@ namespace TwoDimensionalArrai
                 {
                     for (int j = 0; j < ourArray.GetLength(1); j++)
                     {
-                        Console.WriteLine(ourArray[i, j] + "  ");
+                        Console.Write(ourArray[i, j] + "  ");
                     }
                     Console.WriteLine();
                 }
