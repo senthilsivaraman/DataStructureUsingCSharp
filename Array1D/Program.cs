@@ -141,10 +141,10 @@ namespace ArrayDataStructure
             {
                 intArray[index] = int.MinValue;
             }
-            catch (Exception)
+            catch (Exception e)
             {
-
-                throw;
+                System.Console.WriteLine(e.Message);
+                throw new ArgumentOutOfRangeException("index parameter is out of range.", e);
             }
         }
     }
