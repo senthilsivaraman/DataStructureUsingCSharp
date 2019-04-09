@@ -1,63 +1,8 @@
-﻿using System;
+using System;
 
 namespace StackDataStructures
 {
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            //Getting Stack Size
-            Console.WriteLine("Enter the Stack Size");
-            int StackSize = Convert.ToInt32(Console.ReadLine());
-
-            //Stack Instantiation
-            StackOperations stackObj = new StackOperations(StackSize);
-            int userChoice;
-
-            while (true)
-            {
-                //Stack Operations
-                Console.Clear();
-                Console.WriteLine("Enter the choice to Perform Stack Operation in Stack");
-                Console.WriteLine("1. PUSH");
-                Console.WriteLine("2. POP");
-                Console.WriteLine("3. Display the Stack");
-                Console.WriteLine("4. Delete the Stack");
-                Console.WriteLine("5. Exit");
-
-                userChoice = Convert.ToInt32(Console.ReadLine());
-                switch (userChoice)
-                {
-                    case 1:
-                        Console.WriteLine("Enter the value");
-                        stackObj.PushinStack(Convert.ToInt32(Console.ReadLine()));
-                        break;
-                    case 2:
-                        stackObj.PopinStack();
-                        break;
-                    case 3:
-                        stackObj.Printstack();
-                        break;
-                    case 4:
-                        Console.WriteLine("Stack - Delete");
-                        stackObj.Deletestack();
-                        break;
-                    case 5:
-                        Environment.Exit(0);
-                        break;
-                    default:
-                        Console.WriteLine("Invalid Input, Try again...");
-                        Environment.Exit(0);
-                        break;
-                }
-
-            }
-            
-
-        }
-    }
-
-    class StackOperations
+    public class StackOperations
     {
         int[] stackArray;
         int currentAddress;
@@ -98,6 +43,7 @@ namespace StackDataStructures
 
         public void PushinStack(int value)
         {
+            Console.WriteLine("Check");
             if (isStackFull())
             {
                 Console.WriteLine("Stack is Full");
@@ -105,7 +51,7 @@ namespace StackDataStructures
             else
             {
                 stackArray[++currentAddress] = value;
-                Console.WriteLine("Item Pushed Successfully");
+                Console.WriteLine("Item-{0} Pushed Successfully to the stack address[{1}]", value, currentAddress);
             }
         }
 
@@ -116,9 +62,9 @@ namespace StackDataStructures
                 Console.WriteLine("Stack is empty");
             }
             else
-            {
+            {                
+                Console.WriteLine("Item - {0} at position [{1}] Popped Successfully",stackArray[currentAddress] ,currentAddress );
                 currentAddress--;
-                Console.WriteLine("Item Popped Successfully");
             }
         }
 
@@ -130,10 +76,10 @@ namespace StackDataStructures
             }
             else
             {
-                for (int i = currentAddress; i > stackArray.Length; i--)
+                for (int i = currentAddress; i > -1; i--)
                 {
-                    Console.WriteLine("Elements in the Stack");
-                    Console.WriteLine(stackArray[currentAddress]);
+                    Console.Write("Elements in the Stack position [{0}] -", currentAddress);
+                    Console.WriteLine(stackArray[i]);
                 }
             }
         }
@@ -148,6 +94,58 @@ namespace StackDataStructures
             {
                 currentAddress = -1;
                 Console.WriteLine("Stack Deleted successfully");
+            }
+        }
+    }
+
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            //Getting Stack Size
+            Console.WriteLine("Enter the Stack Size");
+            int StackSize = Convert.ToInt32(Console.ReadLine());
+
+            //Stack Instantiation
+            StackOperations stackObj = new StackOperations(StackSize);
+            int userChoice;
+
+            while (true)
+            {
+                //Stack Operations
+                
+                Console.WriteLine("\n\nEnter the choice to Perform Stack Operation in Stack");
+                Console.WriteLine("1. PUSH");
+                Console.WriteLine("2. POP");
+                Console.WriteLine("3. Display the Stack");
+                Console.WriteLine("4. Delete the Stack");
+                Console.WriteLine("5. Exit");
+
+                userChoice = Convert.ToInt32(Console.ReadLine());
+                switch (userChoice)
+                {
+                    case 1:
+                        Console.WriteLine("Enter the value");
+                        stackObj.PushinStack(Convert.ToInt32(Console.ReadLine()));
+                        break;
+                    case 2:
+                        stackObj.PopinStack();
+                        break;
+                    case 3:
+                        stackObj.Printstack();
+                        break;
+                    case 4:
+                        stackObj.Deletestack();
+                        break;
+                    case 5:
+                        Environment.Exit(0);
+                        break;
+                    default:
+                        Console.WriteLine("Invalid Input, Try again...");
+                        Environment.Exit(0);
+                        break;
+                }
             }
         }
     }
